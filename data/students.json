@@ -1,0 +1,67 @@
+{
+    "students": [
+        {
+            "name": "Gerard",
+            "lastname": "Jalili",
+            "age": 30,
+            "class": "FBW101",
+            "location": "BER"
+        },
+        {
+            "name": "Patrick",
+            "lastname": "Jalili",
+            "age": 30,
+            "class": "FBW101",
+            "location": "BER"
+        },
+        {
+            "name": "Julian",
+            "lastname": "Jalili",
+            "age": 30,
+            "class": "FBW101",
+            "location": "BER"
+        },
+        {
+            "name": "Paulina",
+            "lastname": "Jalili",
+            "age": 30,
+            "class": "FBW101",
+            "location": "BER"
+        },
+        {
+            "name": "Sabrina",
+            "lastname": "Jalili",
+            "age": 30,
+            "class": "FBW101",
+            "location": "BER"
+        },
+        {
+            "name": "Emin",
+            "lastname": "Jalili",
+            "age": 30,
+            "class": "FBW101",
+            "location": "BER"
+        },
+        {
+            "name": "Rene",
+            "lastname": "Jalili",
+            "age": 30,
+            "class": "FBW101",
+            "location": "BER"
+        },
+        {
+            "name": "Gonzalo",
+            "lastname": "Jalili",
+            "age": 30,
+            "class": "FBW101",
+            "location": "BER"
+        },
+        {
+            "name": "Sabrina",
+            "lastname": "Jalili",
+            "age": 30,
+            "class": "FBW101",
+            "location": "BER"
+        }
+    ]
+}

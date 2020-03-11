@@ -1,17 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-let students = [
-  {
-    name: "Rupert",
-    lastname: "Jalili",
-    age: 30,
-    class: "FBW101",
-    location: "BER"
-  }
-];
-
-
+const { students } = require("../data/students.json")
+console.log(students);
 // - GET (all, individual)
 router.get("/", (req, res) => {
   res.status(200).json(students);
