@@ -2,7 +2,7 @@ let Joi = require("@hapi/joi")
 
 
 let validateFunc = (req, res, next) => {
-    Joi.object({
+    const schema = Joi.object({
         name: Joi.string()
             .min(1)
             .trim()
@@ -21,8 +21,12 @@ let validateFunc = (req, res, next) => {
 
         location: Joi.any().allow("BER", "HH", "DUS")
     });
-
-    next()
+    let value = schema.validate(req.body);
+    if (!value.error) {
+        next()
+    } else {
+        res.send(value.error.message)
+    }
 }
 
 
