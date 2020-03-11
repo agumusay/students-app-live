@@ -1,8 +1,8 @@
 let Joi = require("@hapi/joi")
 
 
-let validateFunc = () => {
-    return Joi.object({
+let validateFunc = (req, res, next) => {
+    Joi.object({
         name: Joi.string()
             .min(1)
             .trim()
@@ -21,6 +21,8 @@ let validateFunc = () => {
 
         location: Joi.any().allow("BER", "HH", "DUS")
     });
+
+    next()
 }
 
 
