@@ -9,7 +9,7 @@ const app = express();
 const studentRoutes = require("./routes/students");
 
 app.use(express.json());
-app.use(logInteraction);
+app.use("/api", logInteraction);
 app.use("/api/students", studentRoutes);
 
 
