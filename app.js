@@ -1,7 +1,8 @@
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
-const logInteraction = require('./routes/logs')
+const logInteraction = require('./routes/logs');
+
 
 const app = express();
 

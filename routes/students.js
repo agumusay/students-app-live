@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const validate = require("./validate")
 
 let students = [
   {
@@ -32,7 +33,7 @@ router.get("/:name", (req, res) => {
 });
 
 // - PUT (individual)
-router.put("/:name", (req, res) => {
+router.put("/:name", validate, (req, res) => {
   if (req.params.name && req.body) {
     students = students.map((student) => {
       if (student.name.toLowerCase() === req.params.name.toLowerCase()) {
@@ -56,7 +57,7 @@ router.delete("/:name", (req, res) => {
   res.send(students);
 });
 // - POST (individual)
-router.post("/", (req, res) => {
+router.post("/", validate, (req, res) => {
   if (req.body) {
     students.push(req.body);
     return res.send({
