@@ -1,13 +1,13 @@
-const express = require("express");
-const router = express.Router();
 
 
+let logInteraction = async (req, res, next) => {
 
-// - GET (all, individual)
-router.get("/", (req, res) => {
+    let url = req.originalUrl
+    let payload = req.body;
+    console.log(`${req.method} on ${url}
+ payload: ${JSON.stringify(payload, null, 2)}`)
+    next()
+}
 
-});
 
-
-
-module.exports = router;
+module.exports = logInteraction;
