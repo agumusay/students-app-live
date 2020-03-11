@@ -11,9 +11,19 @@ let students = [
   }
 ];
 
+let logInteraction = (req) => {
+  let url = req.baseUrl;
+  let payload = req.body;
+  console.log(`
+      ${req.method} on ${url}
+      payload: ${JSON.stringify(payload)}
+  `)
+}
+
 // - GET (all, individual)
 router.get("/", (req, res) => {
   res.status(200).json(students);
+  logInteraction(req)
 });
 
 router.get("/:name", (req, res) => {
@@ -26,6 +36,7 @@ router.get("/:name", (req, res) => {
   }
 
   res.status(404).json({ error: "Student not found" });
+  logInteraction(req)
 });
 
 // - PUT (individual)
@@ -39,6 +50,7 @@ router.put("/:name", (req, res) => {
       return student;
     });
   }
+  logInteraction(req)
   res.send(students);
 });
 // - DELETE (individual)
@@ -48,7 +60,7 @@ router.delete("/:name", (req, res) => {
       ({ name }) => name.toLowerCase() !== req.params.name.toLowerCase()
     );
   }
-
+  logInteraction(req)
   res.send(students);
 });
 // - POST (individual)
@@ -60,7 +72,7 @@ router.post("/", (req, res) => {
       message: `student with name: ${req.body.name} added`
     });
   }
-
+  logInteraction(req)
   res.send("NO!");
 });
 
