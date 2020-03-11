@@ -1,21 +1,29 @@
-let validate = Joi.object({
-    name: Joi.string()
-        .min(1)
-        .trim()
-        .required(),
+let Joi = require("@hapi/joi")
 
-    lastname: Joi.string()
-        .min(1)
-        .trim()
-        .required(),
 
-    age: Joi.number()
-        .min(18)
-        .required(),
+let validateFunc = () => {
+    return Joi.object({
+        name: Joi.string()
+            .min(1)
+            .trim()
+            .required(),
 
-    class: Joi.string().min(3),
+        lastname: Joi.string()
+            .min(1)
+            .trim()
+            .required(),
 
-    location: Joi.any().allow("BER", "HH", "DUS")
-});
+        age: Joi.number()
+            .min(18)
+            .required(),
 
-module.exports(validate)
+        class: Joi.string().min(3),
+
+        location: Joi.any().allow("BER", "HH", "DUS")
+    });
+}
+
+
+
+
+module.exports = validateFunc;
