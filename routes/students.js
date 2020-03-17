@@ -3,6 +3,7 @@ const router = express.Router();
 
 const fs = require("fs");
 var path = require("path");
+let validatePost = require("../helpers/validititon");
 
 const dataFilePath = path.join(__dirname, "..", "data", "students.json");
 
@@ -58,7 +59,7 @@ router.delete("/:name", (req, res) => {
 });
 // - POST (individual)
 router.post("/", (req, res) => {
-  if (req.body) {
+  if (req.body && validatePost(req.body) === true) {
     students.push(req.body);
     return res.send({
       status: "success",
