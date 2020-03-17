@@ -7,9 +7,8 @@ var path = require("path");
 const dataFilePath = path.join(__dirname, "..", "data", "students.json");
 
 let students = require(dataFilePath);
-//students.push({ name: "sabrina", age: 30, group: "berlin" });
 
-var json = JSON.stringify(st, null, 4);
+var json = JSON.stringify({ name: "sabrina" }, null, 4);
 
 fs.writeFile(dataFilePath, json, "utf8", err => {
   console.log(err);
