@@ -1,15 +1,23 @@
 const express = require("express");
 const router = express.Router();
-
+let Path = require('path');
+const fs = require('fs').promises;
 const { students } = require("../data/students.json")
-console.log(students);
+
+const parseJson = async (file) => {
+  let filePath = Path.join(process.env.PWD, 'data', file);
+  let jsonData = await fs.readFile(filePath, 'utf-8')
+  return jsonData;
+}
+parseJson('students.json').then(console.log)
 // - GET (all, individual)
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
+  let students = await parseJson('students.json');
   res.status(200).json(students);
 
 });
-
-router.get("/:name", (req, res) => {
+router.get("/:name", async (req, res) => {
+  let students = await parseJson('students.json');
   const student = students.find(
     ({ name }) => name.toLowerCase() === req.params.name.toLowerCase()
   );
@@ -17,33 +25,29 @@ router.get("/:name", (req, res) => {
   if (student) {
     return res.status(200).json(student);
   }
-
   res.status(404).json({ error: "Student not found" });
-
 });
-
 // - PUT (individual)
-router.put("/:name", (req, res) => {
+router.put("/:name", async (req, res) => {
   if (req.params.name && req.body) {
+    let students = await parseJson('students.json');
     students = students.map((student) => {
       if (student.name.toLowerCase() === req.params.name.toLowerCase()) {
         Object.assign(student, req.body);
       }
-
       return student;
     });
   }
-
   res.send(students);
 });
 // - DELETE (individual)
-router.delete("/:name", (req, res) => {
+router.delete("/:name", async (req, res) => {
   if (req.params.name) {
+    let students = await parseJson('students.json');
     students = students.filter(
       ({ name }) => name.toLowerCase() !== req.params.name.toLowerCase()
     );
   }
-
   res.send(students);
 });
 // - POST (individual)
@@ -55,7 +59,6 @@ router.post("/", (req, res) => {
       message: `student with name: ${req.body.name} added`
     });
   }
-
   res.send("NO!");
 });
 
