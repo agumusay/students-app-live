@@ -7,18 +7,9 @@ let validatePost = require("../helpers/validititon");
 
 const dataFilePath = path.join(__dirname, "..", "data", "students.json");
 
-let students = require(dataFilePath);
-
-var json = JSON.stringify({ name: "sabrina" }, null, 4);
-
-fs.writeFile(dataFilePath, json, "utf8", err => {
-  console.log(err);
-});
-
-console.log(students);
-
 // - GET (all, individual)
 router.get("/", (req, res) => {
+  let students = require(dataFilePath);
   res.status(200).json(students);
 });
 

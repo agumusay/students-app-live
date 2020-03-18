@@ -1,6 +1,6 @@
-let validatePost = dataToValidate => {
-  const Joi = require("@hapi/joi");
+const Joi = require("@hapi/joi");
 
+let validatePost = dataToValidate => {
   const schema = Joi.object({
     name: Joi.string()
       .min(1)
@@ -20,7 +20,16 @@ let validatePost = dataToValidate => {
 
     location: Joi.any().allow("BER", "HH", "DUS")
   });
-  return Joi.validate(dataToValidate, schema);
+  return schema.validate(dataToValidate);
 };
+
+// if (error) {
+//   res.status(422).json({
+//     message: "Invalid request"
+//   });
+// } else {
+//   // const createdPost = await api.createPost(data);
+//   res.json({ message: "Resource created" });
+// }
 
 module.exports = validatePost;
