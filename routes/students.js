@@ -1,18 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
-let students = [
-  {
-    name: "Rupert",
-    lastname: "Jalili",
-    age: 30,
-    class: "FBW101",
-    location: "BER"
-  }
-];
+const fs = require("fs");
+var path = require("path");
+let validatePost = require("../helpers/validititon");
+
+const dataFilePath = path.join(__dirname, "..", "data", "students.json");
 
 // - GET (all, individual)
 router.get("/", (req, res) => {
+  let students = require(dataFilePath);
   res.status(200).json(students);
 });
 
@@ -31,7 +28,7 @@ router.get("/:name", (req, res) => {
 // - PUT (individual)
 router.put("/:name", (req, res) => {
   if (req.params.name && req.body) {
-    students = students.map((student) => {
+    students = students.map(student => {
       if (student.name.toLowerCase() === req.params.name.toLowerCase()) {
         Object.assign(student, req.body);
       }
@@ -53,7 +50,7 @@ router.delete("/:name", (req, res) => {
 });
 // - POST (individual)
 router.post("/", (req, res) => {
-  if (req.body) {
+  if (req.body && validatePost(req.body) === true) {
     students.push(req.body);
     return res.send({
       status: "success",
